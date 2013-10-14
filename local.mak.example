@@ -1,0 +1,4 @@
+# The URL you would like to use for crash collector, example below
+export RANDOMTEST_URL=http://localhost/randomtest-server.php
+
+

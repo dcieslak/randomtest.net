@@ -1,1 +1,5 @@
 doc/diagrams/*.png
+*.o
+*.so
+*.exe
+local.mak
