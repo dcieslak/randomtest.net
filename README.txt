@@ -1,4 +1,6 @@
-Random Test – an Idea
+Random Test
+
+AN IDEA
 
 Do you want your application to work fast, have no bugs and be no
 resource hog for your environment? Sure, everyone wants. You are
@@ -24,5 +26,16 @@ your system-under-test by observing changes in number of errors, day
 by day. No scripting required to cover any new line of code! It will
 be tested automatically!
 
-Dariusz Cieslak, randomtest.net
+LICENSE
 
+It's GPLv2 source code license - if you sell your software with my
+source code included you have to make all your source code public
+as I do.
+
+Of course you may use randomtest freely to increase your codebase
+quality. Extend/change it as you wish.
+
+Other licensing options: please, contact me for details:
+randomtest at aplikacja.info.
+
+Dariusz Cieslak, randomtest.net
