@@ -1,6 +1,6 @@
 PROBE_NAME=randomtest-probe
 
-all: $(PROBE_NAME).so test1.exe run_tests
+build: $(PROBE_NAME).so test1.exe
 
 $(PROBE_NAME).so: $(PROBE_NAME).c
 	$(CXX) `curl-config --cflags` -c -Wall -Werror -fpic --pedantic-errors $(PROBE_NAME).c
@@ -9,7 +9,7 @@ $(PROBE_NAME).so: $(PROBE_NAME).c
 test1.exe: test1.cpp
 	$(CXX) -rdynamic -Wall -Werror --pedantic-errors test1.cpp -o test1.exe
 
-run_tests:
+test:
 	LD_PRELOAD=./$(PROBE_NAME).so ./test1.exe || true
 
 clean:
