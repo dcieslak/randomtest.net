@@ -11,11 +11,11 @@ function format_backtrace($frameSkip = 2) {
             continue;
         }
 
-        $file = $frameInfo['file'];
+        $file = basename($frameInfo['file']);
         $line = $frameInfo['line'];
         $function = $frameInfo['function'];
 
-        $trace .= "$file:$line $function\n";
+        $trace .= "$file:$line $function()\n";
     }
 
     return $trace;
@@ -32,7 +32,7 @@ function send_stacktrace ($comment) {
     $handle = curl_init();
 
     $stacktrace = format_backtrace(2);
-    $stacktraceWithDecor = "BEGIN RANDOMTEST EVENT\n$comment\n${stacktrace}END RANDOMTEST EVENT\n";
+    $stacktraceWithDecor = "[$comment]\n${stacktrace}";
     $encodedStacktrace = urlencode($stacktraceWithDecor);
 
     curl_setopt($handle, CURLOPT_URL, $RANDOMTEST_URL);

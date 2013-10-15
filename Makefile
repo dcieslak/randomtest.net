@@ -15,6 +15,7 @@ src/server/var:
 
 clean:
 	make -C src/probes/c clean
+	rm -f src/server/var/*
 
 -include local.mak
 

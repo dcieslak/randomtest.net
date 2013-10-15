@@ -56,7 +56,7 @@ void send_event(const char *source, FILE *out) {
     char processName[512];
     find_process_name(processName, sizeof(processName));
 
-    fprintf(out, "BEGIN RANDOMTEST EVENT process:%s\n%s\n", processName, buffer);
+    fprintf(out, "[%s %s]\n", processName, buffer);
 
     // storage array for stack trace address data
     void *addrlist[MAXFRAMES + 1];
@@ -132,8 +132,6 @@ void send_event(const char *source, FILE *out) {
 
     free(funcname);
     free(symbollist);
-
-    fprintf(out, "RANDOMTEST EVENT END\n");
 }
 
 
