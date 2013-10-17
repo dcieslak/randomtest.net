@@ -2,6 +2,7 @@
  * randomtest.net
  */
 #include <assert.h>
+#include <libgen.h>
 #include <ctype.h>
 #include <curl/curl.h>
 #include <arpa/inet.h>
@@ -55,8 +56,9 @@ void send_event(const char *source, FILE *out) {
 
     char processName[512];
     find_process_name(processName, sizeof(processName));
+    char* baseName = basename(processName);
 
-    fprintf(out, "[%s %s]\n", processName, buffer);
+    fprintf(out, "[%s %s]\n", baseName, buffer);
 
     // storage array for stack trace address data
     void *addrlist[MAXFRAMES + 1];
@@ -110,14 +112,14 @@ void send_event(const char *source, FILE *out) {
                                                 funcname, &funcnamesize, &status);
             if (status == 0) {
                 funcname = retName; // use possibly realloc()-ed string
-                fprintf(out, "%s: %s+%s\n",
-                        symbollist[i], funcname, begin_offset);
+                fprintf(out, "%s: %s\n",
+                        symbollist[i], funcname);
 
             } else {
                 // demangling failed. Output function name as a C function with
                 // no arguments.
-                fprintf(out, "%s: %s()+%s\n",
-                        symbollist[i], begin_name, begin_offset);
+                fprintf(out, "%s: %s()\n",
+                        symbollist[i], begin_name);
             }
 
             // Skip long list of repeating clone()
@@ -126,6 +128,10 @@ void send_event(const char *source, FILE *out) {
             }
         } else {
             // couldn't parse the line? print the whole line.
+            char* braceOffset = index(symbollist[i], (int) '[');
+            if (braceOffset) {
+                *braceOffset = '\0';
+            }
             fprintf(out, "%s: ??\n", symbollist[i]);
         }
     }
