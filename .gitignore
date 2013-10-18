@@ -1,3 +1,5 @@
+classes
+*.class
 var
 doc/diagrams/*.png
 *.o

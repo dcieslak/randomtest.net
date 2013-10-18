@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<web-app>
+
+    <!-- sample servlets -->
+    <servlet>
+        <display-name>ExceptionTest</display-name>
+        <servlet-name>ExceptionTest</servlet-name>
+        <servlet-class>com.randomtest.test.ExceptionTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ExceptionTest</servlet-name>
+        <url-pattern>/ExceptionTest</url-pattern>
+    </servlet-mapping>
+
+    <!-- randomtest infrastructure -->
+    <servlet>
+        <display-name>RandomTestErrorHandler</display-name>
+        <servlet-name>RandomTestErrorHandler</servlet-name>
+        <servlet-class>com.randomtest.RandomTestErrorHandler</servlet-class>
+        <init-param>
+            <param-name>RANDOMTEST_URL</param-name>
+            <param-value>%RANDOMTEST_URL%</param-value>
+        </init-param>
+        <!-- To show any config problems instantly -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RandomTestErrorHandler</servlet-name>
+        <url-pattern>/RandomTestErrorHandler</url-pattern>
+    </servlet-mapping>
+
+    <!-- Error types to be handled by randomtest -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/RandomTestErrorHandler</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type >
+        <location>/RandomTestErrorHandler</location>
+    </error-page>
+
+</web-app>
+
+

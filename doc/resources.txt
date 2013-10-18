@@ -1,0 +1,14 @@
+Web resources that helped a bit with probes:
+
+Servlets - Exception Handling
+http://www.tutorialspoint.com/servlets/servlets-exception-handling.htm
+
+Web.xml Servlet Configuration
+http://tutorials.jenkov.com/java-servlets/web-xml.html#initParams
+
+Java - sending HTTP parameters via POST method easily
+http://stackoverflow.com/questions/4205980/java-sending-http-parameters-via-post-method-easily
+
+PrintWriter for creating Strings
+http://www.jroller.com/ethdsy/entry/printwriter_for_creating_strings
+
