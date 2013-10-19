@@ -28,11 +28,11 @@ be tested automatically!
 
 LICENSE
 
-It's GPLv2 source code license - if you sell your software with my
-source code included you have to make all your source code public
-as I do.
+It's LGPLv3 source code license - you can embed RandomTest probes with
+your proprietary software with no restrictions. If you modify
+RandomTest source code directly you have to publish your changes.
 
-Of course you may use randomtest freely to increase your codebase
+Of course you may use RandomTest freely to increase your codebase
 quality. Extend/change it as you wish.
 
 Other licensing options: please, contact me for details:
