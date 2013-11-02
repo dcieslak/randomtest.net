@@ -19,6 +19,11 @@ http://www.w3schools.com/js/js_timing.asp
 Greasemonkey
 http://wiki.greasespot.net/Greasemonkey_Manual:Editing
 
+Catch all javascript errors and send them to server
+http://stackoverflow.com/questions/5328154/catch-all-javascript-errors-and-send-them-to-server
+
 How to print stack trace anywhere in Javascript
 http://www.codeovertones.com/2011/08/how-to-print-stack-trace-anywhere-in.html
 
+Bug 355430 - Stack information of uncaught Error object should be available in window.onerror
+https://bugzilla.mozilla.org/show_bug.cgi?id=355430

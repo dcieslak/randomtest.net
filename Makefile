@@ -5,6 +5,7 @@ build:
 	make -C src/probes/java
 
 test: src/server/var
+	make -C src/probes/javascript test
 	make -C src/probes/c test
 	make -C src/probes/php test
 	make -C src/probes/java test

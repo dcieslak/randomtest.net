@@ -6,3 +6,4 @@ doc/diagrams/*.png
 *.so
 *.exe
 local.mak
+files.lst
