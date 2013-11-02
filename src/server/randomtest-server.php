@@ -18,6 +18,17 @@ if (isset($_POST['stacktrace'])) {
     }
     dba_replace($stacktrace, $counter, $db);
 }
+else if (isset($_GET['count'])) {
+    // Shows total counter of all recorded stacktraces including duplicates
+    // Purpose: for local tests of probes
+    header('Content-type: text/plain');
+
+    $counter = 0;
+    for($stacktrace = dba_firstkey($db); $stacktrace != false; $stacktrace = dba_nextkey($db)) {
+        $counter += dba_fetch($stacktrace, $db);
+    }
+    echo "$counter\n";
+}
 else {
     header('Content-type: text/plain');
     echo "RandomTest.net report\n\n";
