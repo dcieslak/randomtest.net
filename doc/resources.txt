@@ -1,4 +1,5 @@
-Web resources that helped a bit with probes:
+Web resources that helped a bit:
+
 
 Servlets - Exception Handling
 http://www.tutorialspoint.com/servlets/servlets-exception-handling.htm
@@ -11,4 +12,13 @@ http://stackoverflow.com/questions/4205980/java-sending-http-parameters-via-post
 
 PrintWriter for creating Strings
 http://www.jroller.com/ethdsy/entry/printwriter_for_creating_strings
+
+JavaScript Timing Events
+http://www.w3schools.com/js/js_timing.asp
+
+Greasemonkey
+http://wiki.greasespot.net/Greasemonkey_Manual:Editing
+
+How to print stack trace anywhere in Javascript
+http://www.codeovertones.com/2011/08/how-to-print-stack-trace-anywhere-in.html
 
