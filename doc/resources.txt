@@ -1,5 +1,7 @@
 Web resources that helped a bit:
 
+Django Middleware documentation
+https://docs.djangoproject.com/en/1.1/topics/http/middleware/#process_exception
 
 Servlets - Exception Handling
 http://www.tutorialspoint.com/servlets/servlets-exception-handling.htm
