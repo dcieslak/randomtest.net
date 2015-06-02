@@ -58,7 +58,7 @@ void send_event(const char *source, FILE *out) {
     find_process_name(processName, sizeof(processName));
     char* baseName = basename(processName);
 
-    fprintf(out, "[%s %s]\n", baseName, buffer);
+    fprintf(out, "RTN: [%s %s]\n", baseName, buffer);
 
     // storage array for stack trace address data
     void *addrlist[MAXFRAMES + 1];
@@ -67,7 +67,7 @@ void send_event(const char *source, FILE *out) {
     int addrlen = backtrace(addrlist, sizeof(addrlist) / sizeof(addrlist[0]));
 
     if (addrlen == 0) {
-        fprintf(out, "  <empty, possibly corrupt>\n");
+        fprintf(out, "RTN: <empty, possibly corrupt>\n");
         return;
     }
 
@@ -112,13 +112,13 @@ void send_event(const char *source, FILE *out) {
                                                 funcname, &funcnamesize, &status);
             if (status == 0) {
                 funcname = retName; // use possibly realloc()-ed string
-                fprintf(out, "%s: %s\n",
+                fprintf(out, "RTN: %s: %s\n",
                         symbollist[i], funcname);
 
             } else {
                 // demangling failed. Output function name as a C function with
                 // no arguments.
-                fprintf(out, "%s: %s()\n",
+                fprintf(out, "RTN: %s: %s()\n",
                         symbollist[i], begin_name);
             }
 
@@ -132,7 +132,7 @@ void send_event(const char *source, FILE *out) {
             if (braceOffset) {
                 *braceOffset = '\0';
             }
-            fprintf(out, "%s: ??\n", symbollist[i]);
+            fprintf(out, "RTN: %s: ??\n", symbollist[i]);
         }
     }
 
@@ -199,7 +199,7 @@ void record_event(const char *source) {
     fprintf(stderr, "%s", rawStacktrace);
 
     if (!url) {
-        fprintf(stderr, "WARN: RANDOMTEST_URL not set, crash reports skipped\n");
+        // fprintf(stderr, "WARN: RANDOMTEST_URL not set, crash reports skipped\n");
         return;
     }
 
@@ -211,7 +211,7 @@ void record_event(const char *source) {
     curl_easy_setopt(handle, CURLOPT_POSTFIELDS, encodedStacktrace);
     CURLcode code = curl_easy_perform(handle);
     if (code != 0) {
-        fprintf(stderr, "ERROR: %s call failed with error %d\n", url, code);
+        fprintf(stderr, "RTN: ERROR: %s call failed with error %d\n", url, code);
         return;
     }
     curl_easy_cleanup(handle);
