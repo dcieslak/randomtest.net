@@ -189,14 +189,23 @@ char *url_encode(const char* prefix, const char *str, char* out, const char* end
 // sends current backtrace to default crash report collector
 void record_event(const char *source) {
 
+    const char *fileNameToSave = getenv("RANDOMTEST_FILE");
     const char *url = getenv("RANDOMTEST_URL");
     char rawStacktrace[BUFSIZE];
     char encodedStacktrace[BUFSIZE];
 
-    FILE* file = fmemopen(rawStacktrace, BUFSIZE, "wt");
-    send_event(source, file);
-    fclose(file);
-    fprintf(stderr, "%s", rawStacktrace);
+    FILE* memoryFile = fmemopen(rawStacktrace, BUFSIZE, "wt");
+    send_event(source, memoryFile);
+    fclose(memoryFile);
+
+    if (fileNameToSave) {
+        FILE* f = fopen(fileNameToSave, "at");
+        fprintf(f, "%s", rawStacktrace);
+        fclose(f);
+    }
+    else {
+        fprintf(stderr, "%s", rawStacktrace);
+    }
 
     if (!url) {
         // fprintf(stderr, "WARN: RANDOMTEST_URL not set, crash reports skipped\n");
