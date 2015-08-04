@@ -1,3 +1,4 @@
+#!/usr/bin/php-cgi
 <?php
 
 $DATABASE_FILE = "var/randomtest.db";
@@ -39,7 +40,8 @@ else {
     // sort array by counter, keys=stacktraces left
     arsort($arr);
     foreach ($arr as $stacktrace => $counter) {
-        echo "event counter: $counter\n$stacktrace\n";
+    	$s = rtrim($stacktrace);
+        echo "event counter: $counter\n$s\n\n";
     }
 }
 
