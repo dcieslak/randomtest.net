@@ -24,8 +24,8 @@
 #include <unistd.h>
 #include <netdb.h>
 
-#define BUFSIZE 1024
-#define MAXFRAMES 16
+#define BUFSIZE 2048
+#define MAXFRAMES 20
 #define SKIP_FRAMES 4
 
 void install_probe(void) __attribute__((constructor));
