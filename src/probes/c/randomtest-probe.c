@@ -255,6 +255,16 @@ static void sigabort_handler(int, siginfo_t *, void *) {
     abort_process();
 }
 
+static void terminate_handler() {
+    record_event("terminate_handler");
+    abort_process();
+}
+
+static void unexpected_handler() {
+    record_event("unexpected_handler");
+    abort_process();
+}
+
 void install_probe() {
     struct sigaction sigact;
 
@@ -268,6 +278,9 @@ void install_probe() {
 
     sigact.sa_sigaction = sigabort_handler;
     sigaction(SIGABRT, &sigact, (struct sigaction *)NULL);
+
+    std::set_terminate(terminate_handler);
+    std::set_unexpected(unexpected_handler);
 
 }
 
