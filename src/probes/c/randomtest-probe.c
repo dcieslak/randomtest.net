@@ -136,6 +136,8 @@ void send_event(const char *source, FILE *out) {
         }
     }
 
+    fprintf(out, "RTN: [end %s]\n", buffer);
+
     free(funcname);
     free(symbollist);
 }
