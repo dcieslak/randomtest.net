@@ -238,7 +238,7 @@ static void abort_process() {
     sigact.sa_flags = SA_RESTART | SA_SIGINFO;
     sigact.sa_sigaction = noop_handler;
     sigaction(SIGABRT, &sigact, (struct sigaction *)NULL);
-    exit(1);
+    abort();
 }
 
 
