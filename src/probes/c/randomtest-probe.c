@@ -247,6 +247,10 @@ static void sigsegv_handler(int, siginfo_t *, void *) {
     abort_process();
 }
 
+static void sigusr1_handler(int, siginfo_t *, void *) {
+    record_event("sigusr1_handler");
+}
+
 static void sigbus_handler(int, siginfo_t *, void *) {
     record_event("sigbus_handler");
     abort_process();
@@ -280,6 +284,9 @@ void install_probe() {
 
     sigact.sa_sigaction = sigabort_handler;
     sigaction(SIGABRT, &sigact, (struct sigaction *)NULL);
+
+    sigact.sa_sigaction = sigusr1_handler;
+    sigaction(SIGUSR1, &sigact, (struct sigaction *)NULL);
 
     std::set_terminate(terminate_handler);
     std::set_unexpected(unexpected_handler);
