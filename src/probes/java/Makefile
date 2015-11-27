@@ -3,8 +3,10 @@ WAR_DEPLOY_DIR=$(JBOSS_HOME)/server/default/deploy/randomtest1.war
 all:
 	mkdir -p classes
 	javac  -source 1.6 -target 1.6 \
-		-cp $(JBOSS_HOME)/client/jboss-servlet-*_spec.jar -d classes \
+		-cp lib/servlet-api.jar -d classes \
 		*.java
+
+install:
 	rm -rf $(WAR_DEPLOY_DIR)
 	mkdir -p $(WAR_DEPLOY_DIR)/WEB-INF
 	cp -r classes $(WAR_DEPLOY_DIR)/WEB-INF/
