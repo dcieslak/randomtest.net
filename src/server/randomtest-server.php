@@ -27,6 +27,19 @@ if (isset($_POST['stacktrace'])) {
     dba_replace($stacktrace, $counter, $db_counters);
     dba_replace($stacktrace, $versions, $db_versions);
 }
+else if (isset($_GET['reset'])) {
+    // Clears local databases
+    header('Content-type: text/plain');
+
+    if ($_GET['reset'] == 'pikiX6ai') {
+        unlink('var/counters.db');
+        unlink('var/versions.db');
+        echo "local state cleared\n";
+    }
+    else {
+        echo "invalid password\n";
+    }
+}
 else if (isset($_GET['count'])) {
     // Shows total counter of all recorded stacktraces including duplicates
     // Purpose: for local tests of probes

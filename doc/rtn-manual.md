@@ -17,11 +17,11 @@ randomtest-server.php
 This is a PHP script that has the following duties:
 
 - collects crash reports from devices
-  - **?stacktrace=...&version=...** - adds stacktrace to the database
+  - **?stacktrace=...&version=...** - (POST) adds stacktrace to the database
     (multiple reports are merged into one), version information is preserved
     there
 - allows to reset it's state
-  - **?reset=<PASSWORD>** - request database reset, PASSWORD is embedded into
+  - **?reset=<PASSWORD>** - (GET) request database reset, PASSWORD is embedded into
     the script (to restrict state change operation to a trusted list of
     persons / programs)
 - presents aggregated report of the crashes
