@@ -10,6 +10,7 @@ test1.exe: test1.cpp
 	$(CXX) -rdynamic -Wall -Werror --pedantic-errors test1.cpp -o test1.exe
 
 test:
+	echo RANDOMTEST_URL=$(RANDOMTEST_URL)
 	LD_PRELOAD=./$(PROBE_NAME).so ./test1.exe || true
 
 clean:

@@ -7,3 +7,5 @@ doc/diagrams/*.png
 *.exe
 local.mak
 files.lst
+doc/*.html
+

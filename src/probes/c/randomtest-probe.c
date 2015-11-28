@@ -193,6 +193,8 @@ void record_event(const char *source) {
 
     const char *fileNameToSave = getenv("RANDOMTEST_FILE");
     const char *url = getenv("RANDOMTEST_URL");
+    const char *version = getenv("RANDOMTEST_VERSION");
+
     char rawStacktrace[BUFSIZE];
     char encodedStacktrace[BUFSIZE];
 
@@ -214,7 +216,11 @@ void record_event(const char *source) {
         return;
     }
 
-    url_encode("stacktrace=", rawStacktrace, encodedStacktrace, encodedStacktrace + BUFSIZE);
+    char* buf_ptr = url_encode("stacktrace=", rawStacktrace, encodedStacktrace, encodedStacktrace + BUFSIZE);
+    *buf_ptr++ = '&';
+    if (version) {
+        buf_ptr = url_encode("version=", version, buf_ptr, encodedStacktrace + BUFSIZE);
+    }
 
     CURL* handle = curl_easy_init();
     curl_easy_setopt(handle, CURLOPT_URL, url);

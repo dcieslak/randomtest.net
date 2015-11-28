@@ -1,3 +1,5 @@
+.PHONY: doc
+
 default: build 
 
 build:
@@ -10,6 +12,9 @@ test: src/server/var
 	make -C src/probes/php test
 	make -C src/probes/java test
 	wget -qO - $$RANDOMTEST_URL
+
+doc:
+	make -C doc
 
 src/server/var:
 	mkdir src/server/var
