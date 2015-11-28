@@ -211,7 +211,8 @@ void record_event(const char *source) {
         fprintf(stderr, "%s", rawStacktrace);
     }
 
-    if (!url) {
+    /* no URL or empty value -> no reporting */
+    if (!url || url[0] == '\0') {
         // fprintf(stderr, "WARN: RANDOMTEST_URL not set, crash reports skipped\n");
         return;
     }
