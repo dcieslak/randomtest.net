@@ -227,6 +227,12 @@ void record_event(const char *source) {
     curl_easy_setopt(handle, CURLOPT_URL, url);
     curl_easy_setopt(handle, CURLOPT_POST, 1);
     curl_easy_setopt(handle, CURLOPT_POSTFIELDS, encodedStacktrace);
+
+    /* Fix HTTP 417 error code */
+    struct curl_slist *list = NULL;
+    list = curl_slist_append(list, "Expect:");
+    curl_easy_setopt(handle, CURLOPT_HTTPHEADER, list);
+
     CURLcode code = curl_easy_perform(handle);
     if (code != 0) {
         fprintf(stderr, "RTN: ERROR: %s call failed with error %d\n", url, code);
