@@ -11,6 +11,8 @@ int main(int, char**) {
     char rawStacktrace[BUFSIZE];
     FILE* memoryFile = fmemopen(rawStacktrace, BUFSIZE, "wt");
 
+    setlinebuf(stdin);
+
     while ((read = getline(&line, &len, stdin)) != -1) {
         if (read == 0 || line[0] == '\n') {
             /* End of stacktrace */
