@@ -11,7 +11,7 @@ int main(int, char**) {
     char rawStacktrace[BUFSIZE];
     FILE* memoryFile = fmemopen(rawStacktrace, BUFSIZE, "wt");
 
-    setlinebuf(stdin);
+    setvbuf(stdin, (char*) NULL, _IONBF, 0);
 
     while ((read = getline(&line, &len, stdin)) != -1) {
         if (read == 0 || line[0] == '\n') {
