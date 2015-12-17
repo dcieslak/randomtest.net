@@ -1,5 +1,7 @@
 .PHONY: doc
 
+-include local.mak
+
 default: build 
 
 build:
@@ -7,11 +9,12 @@ build:
 	make -C src/probes/java
 
 test: src/server/var
+	wget -O - "$$RANDOMTEST_URL?reset=pikiX6ai"
 	make -C src/probes/javascript test
 	make -C src/probes/c test
 	make -C src/probes/php test
 	make -C src/probes/java test
-	wget -qO - $$RANDOMTEST_URL
+	#wget -qO - "$$RANDOMTEST_URL"
 
 doc:
 	make -C doc
@@ -31,5 +34,4 @@ sleep:
 
 all: clean build sleep test
 
--include local.mak
 

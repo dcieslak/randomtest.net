@@ -1,3 +1,5 @@
+*.log
+/src/probes/c/randomtest-stdin
 classes
 *.class
 var

@@ -41,4 +41,12 @@ variables are recognized:
   tested, it's used in the stacktrace aggretor to collect version
   information, optional (if not set: ampty version is used)
 
+randomtest-stdin
+----------------
+
+This standalone tool accepts stacktraces on stdin (separated by empty line)
+and reports them the same ways as randomtest-probe.c does.
+
+The environment variable list is the same as for randomtest-probe.c.
+
 
