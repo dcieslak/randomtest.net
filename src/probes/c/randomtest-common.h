@@ -1,7 +1,7 @@
 #ifndef RANDOMTEST_COMMON_H
 #define RANDOMTEST_COMMON_H
 
-#define BUFSIZE 2048
+#define BUFSIZE (1024*10)
 #define MAXFRAMES 20
 #define SKIP_FRAMES 4
 

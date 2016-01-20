@@ -25,7 +25,7 @@ char *url_encode(const char* prefix, const char *str, char* out, const char* end
     assert(prefix);
     assert(str);
     assert(out);
-    assert(end > out);
+    assert(end >= out);
 
     pstr = prefix;
     while (*pstr && pbuf < end - 1) {
