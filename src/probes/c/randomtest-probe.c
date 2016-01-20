@@ -177,6 +177,11 @@ static void sigbus_handler(int, siginfo_t *, void *) {
     abort_process();
 }
 
+static void sigfpe_handler(int, siginfo_t *, void *) {
+    record_event("sigfpe_handler");
+    abort_process();
+}
+
 static void sigabort_handler(int, siginfo_t *, void *) {
     record_event("sigabort_handler");
     abort_process();
@@ -202,6 +207,9 @@ void install_probe() {
 
     sigact.sa_sigaction = sigbus_handler;
     sigaction(SIGBUS, &sigact, (struct sigaction *)NULL);
+
+    sigact.sa_sigaction = sigfpe_handler;
+    sigaction(SIGFPE, &sigact, (struct sigaction *)NULL);
 
     sigact.sa_sigaction = sigabort_handler;
     sigaction(SIGABRT, &sigact, (struct sigaction *)NULL);
