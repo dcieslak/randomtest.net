@@ -16,6 +16,8 @@
 #include <sys/stat.h>
 #include <sys/syscall.h>
 #include <sys/types.h>
+#include <sys/time.h>
+#include <sys/syscall.h>
 #include <ucontext.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -53,6 +55,16 @@ void print_event_to_FILE(const char *source, FILE *out) {
     char* baseName = basename(processName);
 
     fprintf(out, "RTN: [%s %s]\n", baseName, buffer);
+
+    struct timeval now;
+    gettimeofday(&now, NULL);
+    time_t t = now.tv_sec;
+    struct tm tm;
+    localtime_r(&t, &tm);
+    fprintf(out, "RTN: [%04d%02d%02d %02d:%02d:%02d.%03ld TID: %d]\n",
+            tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday,
+            tm.tm_hour, tm.tm_min, tm.tm_sec, now.tv_usec / 1000,
+            (int) syscall(SYS_gettid));
 
     // storage array for stack trace address data
     void *addrlist[MAXFRAMES + 1];
